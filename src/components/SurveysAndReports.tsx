@@ -1,99 +1,3 @@
-// 'use client';
-
-// import React from "react";
-// import Image from "next/image";
-// import Finance from "../assets/finance.png";
-// import Power from "../assets/power.png";
-// import Health from "../assets/health.png";
-// import { Heart, MessageSquare, Share2 } from "lucide-react";
-
-// const SurverysAndReports = () => {
-//   const surveys = [
-//     {
-//       image: Finance,
-//       category: "Finance",
-//       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-//       stats: {
-//         likes: "25K supported",
-//         comments: "4.5K",
-//         shares: "1.5K"
-//       }
-//     },
-//     {
-//       image: Power,
-//       category: "Power",
-//       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-//       stats: {
-//         likes: "25K supported",
-//         comments: "4.5K",
-//         shares: "1.5K"
-//       }
-//     },
-//     {
-//       image: Health,
-//       category: "Health",
-//       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-//       stats: {
-//         likes: "25K supported",
-//         comments: "4.5K",
-//         shares: "1.5K"
-//       }
-//     }
-//   ];
-
-//   return (
-//     <div className="min-h-[100vh] w-full px-4 py-8 md:px-8 lg:px-24 overflow-hidden pt-[8vh] flex flex-col items-center">
-//       <h1 className="text-2xl font-bold tracking-wide">Surveys And Reports</h1>
-
-//       <div className="flex gap-10 mt-[15vh] flex-wrap justify-center">
-//         {surveys.map((survey, index) => (
-//           <div key={index} className="w-[325px]">
-//             <div className="h-[200px] bg-gray-100 w-full rounded-xl relative">
-//               <Image
-//                 src={survey.image}
-//                 alt={`Survey ${index + 1}`}
-//                 fill
-//                 className="object-cover rounded-xl"
-//               />
-//             </div>
-//             <p className="mt-4 text-sm">{survey.category}</p>
-//             <h1 className="font-semibold text-lg">{survey.title}</h1>
-
-//             <div className="flex items-center gap-8 mt-2 flex-wrap">
-//               <div className="flex items-center gap-2">
-//                 <Heart size={18} fill="red" color="red" />
-//                 <p className="text-sm">{survey.stats.likes}</p>
-//               </div>
-
-//               <div className="flex items-center gap-2">
-//                 <MessageSquare size={18} />
-//                 <p className="text-sm">{survey.stats.comments}</p>
-//               </div>
-
-//               <div className="flex items-center gap-2">
-//                 <Share2 size={18} />
-//                 <p className="text-sm">{survey.stats.shares}</p>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {/* View All Button */}
-//       <button className="rounded-sm text-gray-900 hover:text-purple-900 px-8 py-3 font-medium underline cursor-pointer mt-[15vh] hover:scale-105 transition-transform">
-//         View All
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default SurverysAndReports;
-
-
-
-
-
-
 'use client';
 
 import React from "react";
@@ -101,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Finance from "../assets/finance.png";
 import Power from "../assets/power.png";
-import Health from "../assets/health.png";
+import Health from "../assets/Health.png"
 import { Heart, MessageSquare, Share2 } from "lucide-react";
 
 const fadeUpVariant = {

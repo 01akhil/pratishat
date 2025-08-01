@@ -35,7 +35,7 @@ import collab4 from "../../assets/collab4.png"
 import research from "../../assets/research.png"
 import survey from "../../assets/survey.png"
 import proposals from "../../assets/proposals.png"
-import kate from "../../assets/kate.png"
+import kate from "../../assets/Kate.png"
 
 import Link from 'next/link';
 

@@ -19,7 +19,8 @@ import Abode from "../../assets/Abode.png";
 import Canvas from "../../assets/Canvas.png";
 import comment from "../../assets/comment.png";
 import share from "../../assets/share.png";
-import illustration from "../../assets/illustration.png";
+
+import illustration from "../../assets/Illustration.png"
 import Icon from "../../assets/Icons.png";
 import Retweet from "../../assets/retweet.png";
 import CreateProjectModal from '@/components/create-project-modal'
