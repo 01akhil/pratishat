@@ -126,79 +126,79 @@
 //                         </Link>
 //                     </nav>
 
-//                     {/* Topics */}
-//                     <div className="mt-8">
-//                         <div className="flex items-center justify-between mb-4">
-//                             <span className="text-sm text-gray-500">Topics</span>
-//                             <button className="text-gray-400 hover:text-gray-600">
-//                                 <Plus size={18} />
-//                             </button>
-//                         </div>
+                    // {/* Topics */}
+                    // <div className="mt-8">
+                    //     <div className="flex items-center justify-between mb-4">
+                    //         <span className="text-sm text-gray-500">Topics</span>
+                    //         <button className="text-gray-400 hover:text-gray-600">
+                    //             <Plus size={18} />
+                    //         </button>
+                    //     </div>
 
-//                         <div className="space-y-3">
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-blue-900 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Eco} alt="" />
-//                                 </div>
-//                                 <span className="text-sm font-semibold">Economics</span>
-//                             </div>
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Miro} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Politics</span>
-//                             </div>
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Abode} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Health</span>
-//                             </div>
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Canvas} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Lifestyle</span>
-//                             </div>
-//                         </div>
-//                     </div>
+                    //     <div className="space-y-3">
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-blue-900 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Eco} alt="" />
+                    //             </div>
+                    //             <span className="text-sm font-semibold">Economics</span>
+                    //         </div>
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Miro} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Politics</span>
+                    //         </div>
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Abode} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Health</span>
+                    //         </div>
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Canvas} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Lifestyle</span>
+                    //         </div>
+                    //     </div>
+                    // </div>
 
-//                     {/* Groups */}
-//                     <div className="mt-8">
-//                         <div className="flex items-center justify-between mb-4">
-//                             <span className="text-sm text-gray-500">Groups</span>
-//                             <button className="text-gray-400 hover:text-gray-600">
-//                                 <Plus size={18} />
-//                             </button>
-//                         </div>
+                    // {/* Groups */}
+                    // <div className="mt-8">
+                    //     <div className="flex items-center justify-between mb-4">
+                    //         <span className="text-sm text-gray-500">Groups</span>
+                    //         <button className="text-gray-400 hover:text-gray-600">
+                    //             <Plus size={18} />
+                    //         </button>
+                    //     </div>
 
-//                         <div className="space-y-3">
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-blue-900 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Eco} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Figma</span>
-//                             </div>
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Miro} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Miro</span>
-//                             </div>
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Abode} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Adobe</span>
-//                             </div>
-//                             <div className="flex items-center gap-3 cursor-pointer">
-//                                 <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-xs">
-//                                     <Image src={Canvas} alt="" />
-//                                 </div>
-//                                 <span className="text-black text-sm font-semibold">Canva</span>
-//                             </div>
-//                         </div>
-//                     </div>
+                    //     <div className="space-y-3">
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-blue-900 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Eco} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Figma</span>
+                    //         </div>
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Miro} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Miro</span>
+                    //         </div>
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Abode} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Adobe</span>
+                    //         </div>
+                    //         <div className="flex items-center gap-3 cursor-pointer">
+                    //             <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-xs">
+                    //                 <Image src={Canvas} alt="" />
+                    //             </div>
+                    //             <span className="text-black text-sm font-semibold">Canva</span>
+                    //         </div>
+                    //     </div>
+                    // </div>
 
 //                     {/* Bottom items */}
 //                     <div className="mt-10 space-y-4">
@@ -520,6 +520,80 @@ const Dashboard = () => {
 
                     {/* Topics and Groups sections remain the same */}
                     {/* ... */}
+                                        {/* Topics */}
+                    <div className="mt-8">
+                        <div className="flex items-center justify-between mb-4">
+                            <span className="text-sm text-gray-500">Topics</span>
+                            <button className="text-gray-400 hover:text-gray-600">
+                                <Plus size={18} />
+                            </button>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-blue-900 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Eco} alt="" />
+                                </div>
+                                <span className="text-sm font-semibold">Economics</span>
+                            </div>
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Miro} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Politics</span>
+                            </div>
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Abode} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Health</span>
+                            </div>
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Canvas} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Lifestyle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Groups */}
+                    <div className="mt-8">
+                        <div className="flex items-center justify-between mb-4">
+                            <span className="text-sm text-gray-500">Groups</span>
+                            <button className="text-gray-400 hover:text-gray-600">
+                                <Plus size={18} />
+                            </button>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-blue-900 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Eco} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Figma</span>
+                            </div>
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-yellow-500 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Miro} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Miro</span>
+                            </div>
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Abode} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Adobe</span>
+                            </div>
+                            <div className="flex items-center gap-3 cursor-pointer">
+                                <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-xs">
+                                    <Image src={Canvas} alt="" />
+                                </div>
+                                <span className="text-black text-sm font-semibold">Canva</span>
+                            </div>
+                        </div>
+                    </div>
+                    
 
                     {/* Bottom items */}
                     <div className="mt-10 space-y-4">
@@ -598,7 +672,112 @@ const Dashboard = () => {
                     )}
 
                     {/* Main content remains the same */}
-                    {/* ... */}
+                    <main className="p-4 md:pr-6 md:shadow-md md:mt-8 md:pb-1 md:ml-1 md:mr-1 md:rounded-md">
+                        <div className="flex flex-col items-center mb-4">
+                            <h2 className="text-lg font-semibold text-center mb-3">Rise of GDP in Central Africa</h2>
+
+                            <div className="w-full flex flex-col md:flex-row gap-4">
+                                {/* Left side - Chart Image */}
+                                <div className="w-full md:w-1/4 flex justify-center">
+                                    <Image src={illustration} alt="GDP Chart" className="w-full max-w-xs" />
+                                </div>
+
+                                {/* Right side - Progress and Info */}
+                                <div className="w-full md:w-3/4">
+                                    {/* Progress Steps */}
+                                    <div className="flex flex-col mb-4">
+                                        {/* Proposal Step */}
+                                        <div className="flex mb-2">
+                                            <div className="flex flex-col items-center mr-2">
+                                                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">✓</div>
+                                                <div className="h-10 w-0.5 bg-blue-600 mt-1"></div>
+                                            </div>
+                                            <div className="flex-1">
+                                                <h3 className="text-xs font-medium text-gray-500">Proposal</h3>
+                                                <p className="text-gray-500 text-xs mt-1">
+                                                    Accepted: Experts in banking, finance, and economics.
+                                                </p>
+                                                <p className="text-gray-500 text-xs mt-1">
+                                                    <strong>Domains:</strong> Statisticians, Data Scientists, Demographers.
+                                                </p>
+                                                <div className="text-right">
+                                                    <button className="text-gray-500 cursor-pointer text-xs">Read More...</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Survey Step */}
+                                        <div className="flex mb-2">
+                                            <div className="flex flex-col items-center mr-2">
+                                                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">✓</div>
+                                                <div className="h-10 w-0.5 bg-blue-600 mt-1"></div>
+                                            </div>
+                                            <div className="flex-1">
+                                                <h3 className="text-xs font-medium text-gray-500">Survey</h3>
+                                                <p className="text-gray-500 text-xs mt-1">
+                                                    <strong>GDP Growth:</strong> Central Africa's GDP rose to <span className="text-blue-600">5.0%</span> in 2022
+                                                    from <span className="text-blue-600">3.4%</span> in 2021.
+                                                </p>
+                                                <div className="text-right">
+                                                    <button className="text-gray-500 text-xs cursor-pointer">Read More...</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Research Step */}
+                                        <div className="flex">
+                                            <div className="flex flex-col items-center mr-2">
+                                                <Image src={Icon} alt="" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <h3 className="text-xs font-medium text-gray-500">Research</h3>
+                                                <p className="text-gray-500 text-xs mt-1">Ongoing study.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className='flex flex-col sm:flex-row justify-center md:justify-end mb-3 gap-2'>
+                                        {/* Contribution Button */}
+                                        <div className="relative group">
+                                            <button className="flex items-center justify-center px-3 py-1 text-gray-800 text-xs font-medium cursor-pointer relative">
+                                                Contribute
+                                                <ChevronRight size={15} className="ml-1 transform opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1" />
+                                            </button>
+                                            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gray-800 transition-all duration-300 group-hover:w-full"></div>
+                                        </div>
+
+                                        {/* View Post Button */}
+                                        <div className="relative group">
+                                            <button className="flex items-center justify-center px-3 py-1 text-gray-800 text-xs font-medium cursor-pointer relative">
+                                                View Post
+                                                <ChevronRight size={15} className="ml-1 transform opacity-100 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Engagement Stats */}
+                        <div className="flex flex-wrap justify-center md:justify-around items-center text-xs mb-2 gap-4 md:gap-0">
+                            <div className="flex items-center space-x-1">
+                                <Heart className="text-gray-500" size={18} fill='red' color='red'/>
+                                <span className="text-gray-700">25k Upvoted</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <Image src={Retweet} alt="" className='h-5'/>
+                                <span className="text-gray-700">2.4k Supoorted</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <MessageCircle className="text-gray-500" size={18} />
+                                <span className="text-gray-700">4.4k</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <Share2 className="text-gray-500" size={18} />
+                                <span className="text-gray-700">1.5k</span>
+                            </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         </>
