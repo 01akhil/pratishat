@@ -68,7 +68,7 @@ export default function Tabs() {
           }`}
         >
           {/* Ongoing projects content */}
-          <p>Ongoing projects content will appear here</p>
+          <p>Saved projects will appear here</p>
         </div>
       </div>
     </div>
