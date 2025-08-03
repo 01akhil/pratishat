@@ -44,7 +44,7 @@ const UserSearch = () => {
   };
 
   return (
-    <div className="relative w-full " ref={containerRef}>
+    <div className="relative w-full md:w-auto" ref={containerRef}>
       {/* Sticky Search Bar like Instagram */}
       <div className="sticky top-4 z-50 bg-white rounded shadow-sm">
         <div className="relative">

@@ -125,7 +125,7 @@ export default async function UserProfilePage({ params }: Props) {
           Prati<span className="text-[#a3d9c9]">Shat</span>
         </h1>
         <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto justify-end">
-          <UserSearch className="w-full md:w-auto"/>
+          <UserSearch />
           <Plus size={20} className="text-black cursor-pointer md:w-6 md:h-6" />
         </div>
       </header>
