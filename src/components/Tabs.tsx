@@ -39,7 +39,7 @@ export default function Tabs() {
                 : 'text-gray-500'
             }`}
           >
-            ONGOING PROJECTS
+             SAVED
           </button>
         </div>
       </div>
