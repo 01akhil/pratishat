@@ -7,21 +7,17 @@ import Link from 'next/link';
 import Facebook from '../assets/Facebook.png';
 import { UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 
-
 const Login = () => {
   const router = useRouter();
-
- 
-    const { user } = useUser();
+  const { user } = useUser();
   
-    useEffect(() => {
-      if (user) {
-        // Assuming you get chat_id from user data or a backend call
-        const chatId = user?.id; // Example: using user ID as chat ID
-        console.log(chatId);
-        router.push(`/dashboard`);
-      }
-    }, [user, router]);
+  useEffect(() => {
+    if (user) {
+      const chatId = user?.id;
+      console.log(chatId);
+      router.push(`/dashboard`);
+    }
+  }, [user, router]);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -74,9 +70,9 @@ const Login = () => {
   };
 
   return (
-    <div className="sm:w-full md:w-[40vw] p-8">
-      <div className="bg-transparent bg-opacity-30 backdrop-blur-sm p-8 border border-[#b8b8ba] shadow-2xl h-[60vh]">
-        <h2 className="text-md font-semibold text-indigo-700 mb-6">
+    <div className="w-full p-4 sm:p-6 md:p-8">
+      <div className="bg-transparent bg-opacity-30 backdrop-blur-sm p-6 sm:p-8 border border-[#b8b8ba] shadow-2xl min-h-[60vh]">
+        <h2 className="text-md font-semibold text-indigo-700 mb-6 text-center sm:text-left">
           Welcome back! Please login to your account
         </h2>
 
@@ -128,7 +124,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2 sm:gap-0">
             <div className="flex items-center">
               <input
                 id="remember-me"
@@ -148,48 +144,43 @@ const Login = () => {
             </div>
           </div>
 
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          {error && <p className="text-red-500 text-sm mb-4 text-center sm:text-left">{error}</p>}
 
-          <div className="flex sm:flex-row justify-around gap-10">
-            <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <button
-  type="submit"
-  disabled={loading}
-  className="w-full sm:w-[9vw] px-6 py-3 bg-indigo-600 text-white h-[7vh] rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-sm flex items-center justify-center"
->
-  {loading ? (
-    <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-  ) : (
-    'Login'
-  )}
-</button>
-
+                type="submit"
+                disabled={loading}
+                className="w-full sm:w-[120px] px-4 py-2 bg-indigo-600 text-white h-[48px] rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-sm flex items-center justify-center"
+              >
+                {loading ? (
+                  <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  'Login'
+                )}
+              </button>
 
               <Link
                 href="/signup"
-                className="w-full h-[7vh] sm:w-[9vw] px-6 py-3 bg-white text-indigo-600 font-medium rounded border border-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-center text-sm flex items-center justify-center"
+                className="w-full h-[48px] sm:w-[120px] px-4 py-2 bg-white text-indigo-600 font-medium rounded border border-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-center text-sm flex items-center justify-center"
               >
                 Sign Up
               </Link>
             </div>
 
-            <div className="flex items-center justify-center gap-4 mt-4 sm:mt-0">
-
+            <div className="flex items-center justify-center gap-4">
               <SignedOut>
-            <Link href="/sign-in" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-              <img
-             className='cursor-pointer hover:scale-110 transition-transform'
-  src="https://png.pngtree.com/png-vector/20230817/ourmid/pngtree-google-internet-icon-vector-png-image_9183287.png"
-  alt="Google"
-  width={20}
-  height={20}
-/>
-            </Link>
-
-
-
-          </SignedOut> 
-             
+                <Link href="/sign-in" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  <img
+                    className='cursor-pointer hover:scale-110 transition-transform'
+                    src="https://png.pngtree.com/png-vector/20230817/ourmid/pngtree-google-internet-icon-vector-png-image_9183287.png"
+                    alt="Google"
+                    width={20}
+                    height={20}
+                  />
+                </Link>
+              </SignedOut> 
+              
               <Image
                 className="w-[22px] cursor-pointer hover:scale-110 transition-transform"
                 src={Facebook}
@@ -197,7 +188,11 @@ const Login = () => {
                 width={22}
                 height={22}
               />
-             <img className='w-[25px] cursor-pointer hover:scale-110 transition-transform' src='https://img.freepik.com/premium-vector/x-new-social-network-black-app-icon-twitter-rebranded-as-x-twitter-s-logo-was-changed_277909-568.jpg?semt=ais_hybrid' alt="Twitter" />
+              <img 
+                className='w-[22px] cursor-pointer hover:scale-110 transition-transform' 
+                src='https://img.freepik.com/premium-vector/x-new-social-network-black-app-icon-twitter-rebranded-as-x-twitter-s-logo-was-changed_277909-568.jpg?semt=ais_hybrid' 
+                alt="Twitter" 
+              />
             </div>
           </div>
         </form>
@@ -207,6 +202,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
