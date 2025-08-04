@@ -13,6 +13,12 @@ const UserSearch = () => {
   const router = useRouter();
   const containerRef = useRef(null);
 
+   const [id, setId] = useState<string | null>(null);
+  
+      useEffect(() => {
+          setId(localStorage.getItem("userId"));
+      }, []);
+
   const handleSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults([]);
