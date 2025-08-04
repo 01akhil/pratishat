@@ -279,7 +279,7 @@ export default function UserProfileClient({ user }: Props) {
   }, [showMore, user._id]);
 
   return (
-    <div className={`${isMobile ? 'pt-16 px-4' : 'pt-20 px-8'} pb-6 font-sans max-w-4xl mx-auto`}>
+    <div className={`${isMobile ? 'pt-16 px-4' : 'pt-20 px-8'} pb-6 font-sans max-w-full mx-auto`}>
       <div className="flex flex-col md:flex-row justify-between items-start gap-4">
         {/* User Info */}
         <div className="w-full md:w-auto">
