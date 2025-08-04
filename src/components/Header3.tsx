@@ -15,6 +15,10 @@ const Header = () => {
     const [id, setId] = useState<string | null>(null);
 
     useEffect(() => {
+            setId(localStorage.getItem("userId"));
+        }, []);
+
+    useEffect(() => {
         const checkIfMobile = () => {
             setIsMobile(window.innerWidth < 768);
         };
