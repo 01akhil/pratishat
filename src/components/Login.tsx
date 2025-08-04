@@ -169,7 +169,7 @@ const Login = () => {
             </div>
 
             <div className="flex items-center justify-center gap-4">
-              <SignedOut>
+              {/* <SignedOut>
                 <Link href="/sign-in" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                   <img
                     className='cursor-pointer hover:scale-110 transition-transform'
@@ -179,7 +179,7 @@ const Login = () => {
                     height={20}
                   />
                 </Link>
-              </SignedOut> 
+              </SignedOut>  */}
               
               <Image
                 className="w-[22px] cursor-pointer hover:scale-110 transition-transform"
