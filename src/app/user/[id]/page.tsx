@@ -9,6 +9,8 @@ import Loader1 from '@/components/Loader1'
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import CreateProjectModal from '@/components/create-project-modal';
+import Header from "@/components/Header3";
+import Tabs from "@/components/Tabs";
 
 interface Props {
   params: { id: string };
@@ -114,65 +116,32 @@ export default function UserProfilePage({ params }: Props) {
   return (
     <div className="font-sans max-w-screen-xl mx-auto">
       {/* Header */}
-      <header className="h-16 border-b border-gray-100 flex items-center justify-between px-4 md:px-6 md:justify-end gap-4">
-                             
-                             <div className="flex items-center gap-4 ml-10">
-                               
-                                 <div className='ml-[18vw] flex items-center gap-4 '>
-                                   <button className="text-gray-400 hover:text-gray-600 mr-[0vh] w-[30vw] ">
-                                     
-                                     <UserSearch />
-                                 </button>
-                                 <button
-                                     onClick={() => setShowModal(true)}
-                                     className="text-[#000000] hover:text-gray-600 font-extrabold cursor-pointer"
-                                 >
-                                     <Plus size={23} />
-                                 </button>
-                                  <button
-             onClick={() => router.push(`/user/${id}`)}
-             className="text-[#000000] hover:text-blue-600 font-medium"
-           >
-             My Profile
-           </button>
-                                 
-                                 </div>
-                             </div>
-                         </header>
-     
-                         {showModal && (
-                             <CreateProjectModal
-                                 onCloseAction={() => setShowModal(false)}
-                                 onNextAction={handleNext}
-                             />
-                         )}
-
+      <Header/>
       {/* Banner & Profile */}
-      <div className="relative bg-gray-200 h-36">
-        <div className="absolute -bottom-16 left-8">
-          <div className="h-32 w-32 rounded-full bg-[#f8a7a1] border-4 border-white overflow-hidden">
-            <Image
-              src={user.profile_image_url || 'https://dummyimage.com/128x128/f8a7a1/fff.png&text=Profile'}
-              alt="Profile"
-              width={128}
-              height={128}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-       
-      </div>
+         <div className="relative bg-gray-200 h-28 md:h-36">
+             <div className="absolute -bottom-12 md:-bottom-16 left-4 md:left-8">
+               <div className="h-24 w-24 md:h-32 md:w-32 rounded-full bg-gray-200 border-4 border-white overflow-hidden">
+                 <Image
+                   src={user.profile_image_url || 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Furrandomgeek%2F&psig=AOvVaw2URN8ytiAYglsWQ6rWgIcu&ust=1751826999194000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLiv1KOupo4DFQAAAAAdAAAAABAE'}
+                   alt="Profile"
+                   width={128}
+                   height={128}
+                   className="w-full h-full object-cover"
+                   priority
+                 />
+               </div>
+             </div>
+           </div>
 
       {/* Profile Info */}
       <UserProfileClient user={user} />
 
       {/* Tabs */}
-      <div className="flex justify-between border-t border-black px-40">
-        <button className="px-6 py-3 border-b-2 border-gray-900">PROJECTS</button>
-        <button className="px-6 py-3 text-gray-500">CONTRIBUTIONS</button>
-        <button className="px-6 py-3 text-gray-500">ONGOING PROJECTS</button>
-      </div>
+      <Tabs/>
     </div>
   );
 }
+
+
+
 
