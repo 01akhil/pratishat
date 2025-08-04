@@ -524,42 +524,324 @@
 
 
 
+// 'use client';
+
+// import { useEffect, useState } from 'react';
+// import Image from 'next/image';
+// import Link from 'next/link';
+
+// import { Bell, Plus, Search, Settings, HelpCircle, Moon, MessageCircle, Share2, ChevronDown, Heart, ChevronRight, Notebook, Menu, X } from "lucide-react";
+// import UserSearch from '@/components/UserSearch';
+// import { toast } from 'react-hot-toast';
+
+// import { useRouter } from "next/navigation";
+// import CreateProjectModal from '@/components/create-project-modal';
+
+// import Finance from "../assets/finance.png";
+// import Home from "../../assets/Home.png";
+// import Inbox from "../../assets/Inbox.png";
+// import Notification from "../../assets/Notification.png";
+// import Kate from "../../assets/Kate.png";
+// import Eco from "../../assets/Eco.png";
+// import Miro from "../../assets/Miro.png";
+// import Abode from "../../assets/Abode.png";
+// import Canvas from "../../assets/Canvas.png";
+// import comment from "../../assets/comment.png";
+// import share from "../../assets/share.png";
+// import illustration from "../../assets/illustration.png";
+// import Icon from "../../assets/Icons.png";
+// import Retweet from "../../assets/retweet.png";
+
+
+// import Header from "@/components/Header3"
+
+
+// interface UserSummary {
+//   userId: string;
+//   userName: string;
+//   profile_image_url?: string;
+// }
+
+// export default function FollowList() {
+//   const [followers, setFollowers] = useState<UserSummary[]>([]);
+//   const [following, setFollowing] = useState<UserSummary[]>([]);
+//   const [tab, setTab] = useState<'followers' | 'following'>('followers');
+//   const [loading, setLoading] = useState(true);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+//   const [isOn, setIsOn] = useState(false);
+//   const [showModal, setShowModal] = useState(false);
+//   const [processing, setProcessing] = useState<Record<string, boolean>>({});
+//   const [userId, setUserId] = useState<string | null>(null);
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     // This code will only run on the client side
+//     setUserId(localStorage.getItem("userId"));
+//     console.log(localStorage.getItem("userId"));
+//   }, []);
+
+//   const handleNext = (projectName: string, startFrom: string) => {
+//     console.log("Project created:", { projectName, startFrom });
+//     router.push(`/studio?title=${encodeURIComponent(projectName)}`);
+//     setShowModal(false);
+//   };
+
+//   useEffect(() => {
+//     const checkIfMobile = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+//     checkIfMobile();
+//     window.addEventListener('resize', checkIfMobile);
+//     return () => window.removeEventListener('resize', checkIfMobile);
+//   }, []);
+
+//   useEffect(() => {
+//     const fetchFollowList = async () => {
+//       const userId = localStorage.getItem('userId');
+//       if (!userId) return;
+
+//       try {
+//         const res = await fetch('/api/follow-list', {
+//           method: 'GET',
+//           headers: { 'x-user-id': userId },
+//         });
+
+//         const data = await res.json();
+//         setFollowers(data.followers || []);
+//         setFollowing(data.following || []);
+//       } catch (err) {
+//         console.error('Error fetching follow list:', err);
+//         toast.error('Failed to load follow list');
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchFollowList();
+//   }, []);
+
+//   const handleFollow = async (userId: string) => {
+//     try {
+//       setProcessing(prev => ({ ...prev, [userId]: true }));
+//       const currentUserId = localStorage.getItem('userId');
+//       if (!currentUserId) return;
+
+//       const res = await fetch(`/api/follow-request`, {
+//         method: 'POST',
+//         headers: { 
+//           'Content-Type': 'application/json',
+//           'x-user-id': currentUserId 
+//         },
+//         body: JSON.stringify({ userIdToRequest: userId }),
+//       });
+
+//       const data = await res.json();
+      
+//       if (!res.ok || !data.success) {
+//         toast.error(data.message || 'Failed to send follow request');
+//         return;
+//       }
+
+//       toast.success('Follow request sent successfully');
+//     } catch (err) {
+//       console.error('Error sending follow request:', err);
+//       toast.error('Failed to send follow request');
+//     } finally {
+//       setProcessing(prev => ({ ...prev, [userId]: false }));
+//     }
+//   };
+
+//   const handleUnfollow = async (userId: string) => {
+//     try {
+//       setProcessing(prev => ({ ...prev, [userId]: true }));
+//       const currentUserId = localStorage.getItem('userId');
+//       if (!currentUserId) return;
+
+//       // Optimistic update
+//       setFollowing(prev => prev.filter(user => user.userId !== userId));
+
+//       const res = await fetch(`/api/unfollow/${userId}`, {
+//         method: 'POST',
+//         headers: { 'x-user-id': currentUserId },
+//       });
+
+//       if (!res.ok) {
+//         // Revert if API fails - we'd need to fetch the correct state here
+//         const updatedRes = await fetch('/api/follow-list', {
+//           method: 'GET',
+//           headers: { 'x-user-id': currentUserId },
+//         });
+//         const data = await updatedRes.json();
+//         setFollowing(data.following || []);
+//         const error = await res.json();
+//         toast.error(error.message || 'Failed to unfollow user');
+//         return;
+//       }
+
+//       toast.success('Unfollowed successfully');
+//     } catch (err) {
+//       console.error('Error unfollowing user:', err);
+//       // Revert on error - fetch correct state
+//       const currentUserId = localStorage.getItem('userId');
+//       if (currentUserId) {
+//         const updatedRes = await fetch('/api/follow-list', {
+//           method: 'GET',
+//           headers: { 'x-user-id': currentUserId },
+//         });
+//         const data = await updatedRes.json();
+//         setFollowing(data.following || []);
+//       }
+//       toast.error('Failed to unfollow user');
+//     } finally {
+//       setProcessing(prev => ({ ...prev, [userId]: false }));
+//     }
+//   };
+
+//   const activeList = tab === 'followers' ? followers : following;
+
+//   return (
+//     <div className="flex h-screen bg-gray-50">
+     
+//       {/* Main content */}
+//       <div className="flex-1 overflow-auto">
+//         {/* Header */}
+//        <Header/>
+
+//         {/* Follow List Content */}
+//         <div className="">
+//           <div className="bg-white rounded-xl shadow-sm overflow-hidden min-h-[90vh]">
+//             <div className="border-b border-gray-100 p-5">
+//               <div className="flex mt-4">
+//                 <button
+//                   onClick={() => setTab('followers')}
+//                   className={`px-6 py-3 text-sm font-medium border-b-2 ${
+//                     tab === 'followers' 
+//                       ? 'border-blue-500 text-blue-600' 
+//                       : 'border-transparent text-gray-500 hover:text-gray-700'
+//                   }`}
+//                 >
+//                   Followers
+//                   {followers.length > 0 && (
+//                     <span className="ml-2 bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
+//                       {followers.length}
+//                     </span>
+//                   )}
+//                 </button>
+//                 <button
+//                   onClick={() => setTab('following')}
+//                   className={`px-6 py-3 text-sm font-medium border-b-2 ${
+//                     tab === 'following' 
+//                       ? 'border-blue-500 text-blue-600' 
+//                       : 'border-transparent text-gray-500 hover:text-gray-700'
+//                   }`}
+//                 >
+//                   Following
+//                   {following.length > 0 && (
+//                     <span className="ml-2 bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
+//                       {following.length}
+//                     </span>
+//                   )}
+//                 </button>
+//               </div>
+//             </div>
+
+//             {loading ? (
+//               <div className="p-8 flex flex-col items-center justify-center">
+//                 <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+//                 <p className="text-gray-500">Loading...</p>
+//               </div>
+//             ) : activeList.length === 0 ? (
+//               <div className="p-8 flex flex-col items-center justify-center text-center">
+//                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+//                 </svg>
+//                 <h3 className="text-lg font-medium text-gray-500">No {tab} yet</h3>
+//                 <p className="text-gray-400 mt-1 max-w-md">
+//                   {tab === 'followers' 
+//                     ? "When people follow you, they'll appear here" 
+//                     : "People you follow will appear here"}
+//                 </p>
+//               </div>
+//             ) : (
+//               <div className="divide-y divide-gray-100">
+//                 {activeList.map((user) => (
+//                   <div key={user.userId} className="p-4 hover:bg-gray-50 transition-colors duration-150">
+//                     <div className="flex items-center justify-between">
+//                       <Link href={`/user/${user.userId}`} className="flex items-center gap-4 flex-1">
+//                         <div className="relative">
+//                           <Image
+//                             src={user.profile_image_url || '/default-avatar.png'}
+//                             alt={user.userName}
+//                             width={48}
+//                             height={48}
+//                             className="rounded-full object-cover border border-gray-200"
+//                           />
+//                           <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1">
+//                             <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
+//                               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+//                             </svg>
+//                           </div>
+//                         </div>
+//                         <div>
+//                           <h4 className="text-gray-800 font-medium">{user.userName}</h4>
+//                           <p className="text-gray-500 text-sm">{tab === 'followers' ? 'Follows you' : 'You follow'}</p>
+//                         </div>
+//                       </Link>
+//                       {tab === 'followers' ? (
+//                         <button 
+//                           onClick={() => handleFollow(user.userId)}
+//                           disabled={processing[user.userId]}
+//                           className="text-blue-600 hover:text-blue-800 text-sm font-medium disabled:opacity-50"
+//                         >
+//                           {processing[user.userId] ? 'Processing...' : 'Follow back'}
+//                         </button>
+//                       ) : (
+//                         <button 
+//                           onClick={() => handleUnfollow(user.userId)}
+//                           disabled={processing[user.userId]}
+//                           className="text-red-600 hover:text-red-800 text-sm font-medium disabled:opacity-50"
+//                         >
+//                           {processing[user.userId] ? 'Processing...' : 'Unfollow'}
+//                         </button>
+//                       )}
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { Bell, Plus, Search, Settings, HelpCircle, Moon, MessageCircle, Share2, ChevronDown, Heart, ChevronRight, Notebook, Menu, X } from "lucide-react";
 import UserSearch from '@/components/UserSearch';
 import { toast } from 'react-hot-toast';
-
 import { useRouter } from "next/navigation";
 import CreateProjectModal from '@/components/create-project-modal';
-
-import Finance from "../assets/finance.png";
-import Home from "../../assets/Home.png";
-import Inbox from "../../assets/Inbox.png";
-import Notification from "../../assets/Notification.png";
-import Kate from "../../assets/Kate.png";
-import Eco from "../../assets/Eco.png";
-import Miro from "../../assets/Miro.png";
-import Abode from "../../assets/Abode.png";
-import Canvas from "../../assets/Canvas.png";
-import comment from "../../assets/comment.png";
-import share from "../../assets/share.png";
-import illustration from "../../assets/illustration.png";
-import Icon from "../../assets/Icons.png";
-import Retweet from "../../assets/retweet.png";
-
-
 import Header from "@/components/Header3"
-
 
 interface UserSummary {
   userId: string;
   userName: string;
   profile_image_url?: string;
+  isFollowing?: boolean;
+  hasRequested?: boolean;
 }
 
 export default function FollowList() {
@@ -576,13 +858,10 @@ export default function FollowList() {
   const router = useRouter();
 
   useEffect(() => {
-    // This code will only run on the client side
     setUserId(localStorage.getItem("userId"));
-    console.log(localStorage.getItem("userId"));
   }, []);
 
   const handleNext = (projectName: string, startFrom: string) => {
-    console.log("Project created:", { projectName, startFrom });
     router.push(`/studio?title=${encodeURIComponent(projectName)}`);
     setShowModal(false);
   };
@@ -608,8 +887,22 @@ export default function FollowList() {
         });
 
         const data = await res.json();
-        setFollowers(data.followers || []);
-        setFollowing(data.following || []);
+        
+        // Add status information to each user
+        const followersWithStatus = data.followers?.map((follower: UserSummary) => ({
+          ...follower,
+          isFollowing: data.following?.some((f: UserSummary) => f.userId === follower.userId),
+          hasRequested: data.pendingRequests?.some((r: any) => r.userId === follower.userId)
+        })) || [];
+
+        const followingWithStatus = data.following?.map((followed: UserSummary) => ({
+          ...followed,
+          isFollowing: true,
+          hasRequested: false
+        })) || [];
+
+        setFollowers(followersWithStatus);
+        setFollowing(followingWithStatus);
       } catch (err) {
         console.error('Error fetching follow list:', err);
         toast.error('Failed to load follow list');
@@ -643,6 +936,11 @@ export default function FollowList() {
         return;
       }
 
+      // Update the follower's status
+      setFollowers(prev => prev.map(user => 
+        user.userId === userId ? { ...user, hasRequested: true } : user
+      ));
+
       toast.success('Follow request sent successfully');
     } catch (err) {
       console.error('Error sending follow request:', err);
@@ -659,7 +957,13 @@ export default function FollowList() {
       if (!currentUserId) return;
 
       // Optimistic update
-      setFollowing(prev => prev.filter(user => user.userId !== userId));
+      if (tab === 'following') {
+        setFollowing(prev => prev.filter(user => user.userId !== userId));
+      } else {
+        setFollowers(prev => prev.map(user => 
+          user.userId === userId ? { ...user, isFollowing: false, hasRequested: false } : user
+        ));
+      }
 
       const res = await fetch(`/api/unfollow/${userId}`, {
         method: 'POST',
@@ -667,13 +971,28 @@ export default function FollowList() {
       });
 
       if (!res.ok) {
-        // Revert if API fails - we'd need to fetch the correct state here
+        // Revert if API fails
         const updatedRes = await fetch('/api/follow-list', {
           method: 'GET',
           headers: { 'x-user-id': currentUserId },
         });
         const data = await updatedRes.json();
-        setFollowing(data.following || []);
+        
+        const followersWithStatus = data.followers?.map((follower: UserSummary) => ({
+          ...follower,
+          isFollowing: data.following?.some((f: UserSummary) => f.userId === follower.userId),
+          hasRequested: data.pendingRequests?.some((r: any) => r.userId === follower.userId)
+        })) || [];
+
+        const followingWithStatus = data.following?.map((followed: UserSummary) => ({
+          ...followed,
+          isFollowing: true,
+          hasRequested: false
+        })) || [];
+
+        setFollowers(followersWithStatus);
+        setFollowing(followingWithStatus);
+        
         const error = await res.json();
         toast.error(error.message || 'Failed to unfollow user');
         return;
@@ -690,7 +1009,21 @@ export default function FollowList() {
           headers: { 'x-user-id': currentUserId },
         });
         const data = await updatedRes.json();
-        setFollowing(data.following || []);
+        
+        const followersWithStatus = data.followers?.map((follower: UserSummary) => ({
+          ...follower,
+          isFollowing: data.following?.some((f: UserSummary) => f.userId === follower.userId),
+          hasRequested: data.pendingRequests?.some((r: any) => r.userId === follower.userId)
+        })) || [];
+
+        const followingWithStatus = data.following?.map((followed: UserSummary) => ({
+          ...followed,
+          isFollowing: true,
+          hasRequested: false
+        })) || [];
+
+        setFollowers(followersWithStatus);
+        setFollowing(followingWithStatus);
       }
       toast.error('Failed to unfollow user');
     } finally {
@@ -700,13 +1033,58 @@ export default function FollowList() {
 
   const activeList = tab === 'followers' ? followers : following;
 
+  const renderFollowButton = (user: UserSummary) => {
+    if (tab === 'following') {
+      return (
+        <button 
+          onClick={() => handleUnfollow(user.userId)}
+          disabled={processing[user.userId]}
+          className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white text-red-600 hover:bg-red-50 transition-colors disabled:opacity-50"
+        >
+          {processing[user.userId] ? 'Processing...' : 'Unfollow'}
+        </button>
+      );
+    }
+
+    if (user.isFollowing) {
+      return (
+        <button 
+          onClick={() => handleUnfollow(user.userId)}
+          disabled={processing[user.userId]}
+          className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white text-red-600 hover:bg-red-50 transition-colors disabled:opacity-50"
+        >
+          {processing[user.userId] ? 'Processing...' : 'Unfollow'}
+        </button>
+      );
+    }
+
+    if (user.hasRequested) {
+      return (
+        <button 
+          disabled
+          className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed"
+        >
+          Requested
+        </button>
+      );
+    }
+
+    return (
+      <button 
+        onClick={() => handleFollow(user.userId)}
+        disabled={processing[user.userId]}
+        className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white text-blue-600 hover:bg-blue-50 transition-colors disabled:opacity-50"
+      >
+        {processing[user.userId] ? 'Processing...' : 'Follow back'}
+      </button>
+    );
+  };
+
   return (
     <div className="flex h-screen bg-gray-50">
-     
       {/* Main content */}
       <div className="flex-1 overflow-auto">
-        {/* Header */}
-       <Header/>
+        <Header/>
 
         {/* Follow List Content */}
         <div className="">
@@ -788,23 +1166,7 @@ export default function FollowList() {
                           <p className="text-gray-500 text-sm">{tab === 'followers' ? 'Follows you' : 'You follow'}</p>
                         </div>
                       </Link>
-                      {tab === 'followers' ? (
-                        <button 
-                          onClick={() => handleFollow(user.userId)}
-                          disabled={processing[user.userId]}
-                          className="text-blue-600 hover:text-blue-800 text-sm font-medium disabled:opacity-50"
-                        >
-                          {processing[user.userId] ? 'Processing...' : 'Follow back'}
-                        </button>
-                      ) : (
-                        <button 
-                          onClick={() => handleUnfollow(user.userId)}
-                          disabled={processing[user.userId]}
-                          className="text-red-600 hover:text-red-800 text-sm font-medium disabled:opacity-50"
-                        >
-                          {processing[user.userId] ? 'Processing...' : 'Unfollow'}
-                        </button>
-                      )}
+                      {renderFollowButton(user)}
                     </div>
                   </div>
                 ))}
