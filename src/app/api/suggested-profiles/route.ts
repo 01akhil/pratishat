@@ -1,7 +1,15 @@
+
+
 // // app/api/suggested-profiles/route.ts
 // import { NextRequest, NextResponse } from 'next/server';
 // import connectDB from '@/lib/mongoose/db';
 // import User from '@/lib/mongoose/models/User';
+// import { Types } from 'mongoose';
+
+// interface Connection {
+//   userId: Types.ObjectId;
+//   // Add any other fields that might be in your connection objects
+// }
 
 // export async function GET(req: NextRequest) {
 //   try {
@@ -22,10 +30,10 @@
 
 //     // Get IDs to exclude (people already connected)
 //     const excludedIds = [
-//       userId,
-//       ...currentUser.following.map(f => f.userId.toString()),
-//       ...currentUser.followers.map(f => f.userId.toString()),
-//       ...currentUser.followRequests.map(f => f.userId.toString())
+//       new Types.ObjectId(userId),
+//       ...currentUser.following.map((f: Connection) => f.userId.toString()),
+//       ...currentUser.followers.map((f: Connection) => f.userId.toString()),
+//       ...currentUser.followRequests.map((f: Connection) => f.userId.toString())
 //     ];
 
 //     // Get random 10 users not already connected
@@ -52,8 +60,6 @@
 
 
 
-
-// app/api/suggested-profiles/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongoose/db';
 import User from '@/lib/mongoose/models/User';
@@ -73,23 +79,20 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get current user's connections
-    const currentUser = await User.findById(userId)
-      .select('following followers followRequests');
+    // Get current user's following list only (excluding followers and requests)
+    const currentUser = await User.findById(userId).select('following');
 
     if (!currentUser) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 });
     }
 
-    // Get IDs to exclude (people already connected)
+    // Get IDs to exclude (only people we're already following + ourselves)
     const excludedIds = [
       new Types.ObjectId(userId),
-      ...currentUser.following.map((f: Connection) => f.userId.toString()),
-      ...currentUser.followers.map((f: Connection) => f.userId.toString()),
-      ...currentUser.followRequests.map((f: Connection) => f.userId.toString())
+      ...currentUser.following.map((f: Connection) => f.userId)
     ];
 
-    // Get random 10 users not already connected
+    // Get random 10 users not already followed
     const suggestedUsers = await User.aggregate([
       { $match: { _id: { $nin: excludedIds } } },
       { $sample: { size: 10 } },
