@@ -553,20 +553,20 @@ export default function UserProfileClient({ user }: Props) {
           </button>
 
           {isFollowing ? (
-            <button
-              onClick={handleUnfollow}
-              className="flex items-center justify-center gap-1 md:gap-2 border rounded-full px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm transition-all shadow-sm whitespace-nowrap bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
-            >
-              <Image 
-                src={followIcon} 
-                alt="unfollow" 
-                className="h-3 w-3 md:h-4 md:w-4" 
-                width={16}
-                height={16}
-              />
-              Unfollow
-            </button>
-          ) : (
+  <button
+    onClick={handleUnfollow}
+    className="flex items-center justify-center gap-1 md:gap-2 border rounded-full px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm transition-all shadow-sm whitespace-nowrap bg-red-50 text-red-600 border-red-200 hover:bg-red-100"
+  >
+    <Image 
+      src={followIcon} 
+      alt="unfollow" 
+      className="h-3 w-3 md:h-4 md:w-4" 
+      width={16}
+      height={16}
+    />
+    Unfollow
+  </button>
+) : (
             <button
               onClick={handleFollow}
               disabled={hasRequested}
