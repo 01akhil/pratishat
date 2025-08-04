@@ -15,8 +15,8 @@ const Header = () => {
     const [id, setId] = useState<string | null>(null);
 
     useEffect(() => {
-            setId(localStorage.getItem("userId"));
-        }, []);
+        setId(localStorage.getItem("userId"));
+    }, []);
 
     useEffect(() => {
         const checkIfMobile = () => {
@@ -46,7 +46,10 @@ const Header = () => {
                 <div className="flex items-center gap-4 w-full">
                     {/* Logo - Only shown on desktop */}
                     <div className="hidden md:block">
-                        <h1 className="text-2xl font-bold text-[#2d3e50]">
+                        <h1 
+                            className="text-2xl font-bold text-[#2d3e50] cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={() => router.push('/dashboard')}
+                        >
                             Prati<span className="text-[#a8d5ba]">Shat</span>
                         </h1>
                     </div>
