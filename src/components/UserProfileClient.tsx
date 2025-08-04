@@ -457,7 +457,7 @@ export default function UserProfileClient({ user }: Props) {
         return;
       }
 
-      const res = await fetch(`/api/user/${user._id}`, {
+      const res = await fetch(`/api/unfollow/${user._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
