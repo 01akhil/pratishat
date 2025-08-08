@@ -29,6 +29,7 @@ const userSchema = new Schema(
     gender: {
       type: String,
       default: '',
+      enum: ['Male', 'Female', 'Other', 'Prefer not to say', '']
     },
     nationality: {
       type: String,
@@ -81,6 +82,10 @@ const userSchema = new Schema(
       type: String,
       default: '',
     },
+    yearEstablished: {
+      type: String,
+      default: '',
+    },
     fullAddress: {
       type: String,
       default: '',
@@ -93,13 +98,25 @@ const userSchema = new Schema(
       type: String,
       default: '',
     },
-    managerEmailAddress: {
+     managerEmail: {
+      type: String,
+      default: '',
+    },
+    managerWhatsapp: {
       type: String,
       default: '',
     },
     profile_image_url: {
       type: String,
       default: '',
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verificationRequested: {
+      type: Boolean,
+      default: false,
     },
     projects: [
       {
