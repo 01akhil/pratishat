@@ -253,6 +253,7 @@
 
 import React, { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import { ChevronDown, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface OrganizationSignUpProps {
   onToggle: () => void;
