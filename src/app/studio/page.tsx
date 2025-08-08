@@ -308,7 +308,7 @@ function DashboardContent() {
 
             {/* Submissions Section */}
             <div className="mb-8">
-              <h3 className="font-base mb-4 border-b border-gray-200 pb-2">Create New</h3>
+       
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
                 <Link href='/proposal' className="">
@@ -320,7 +320,7 @@ function DashboardContent() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="font-medium">Proposal</div>
+                    <div className="font-medium">Create A New Proposal</div>
                   </div>
                 </Link>
 
@@ -333,7 +333,7 @@ function DashboardContent() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="font-medium">Survey</div>
+                    <div className="font-medium">Make New Survey</div>
                   </div>
                 </Link>
 
@@ -346,7 +346,7 @@ function DashboardContent() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="font-medium">Research</div>
+                    <div className="font-medium">Write New Research</div>
                   </div>
                 </Link>
               </div>
