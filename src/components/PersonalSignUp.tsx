@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
@@ -20,36 +19,36 @@ const PersonalSignUp: React.FC<PersonalSignUpProps> = ({ onToggle }) => {
   const professionRef = useRef<HTMLDivElement>(null);
 
   const [dragActive, setDragActive] = useState(false);
-const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  };
 
-const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
-  e.preventDefault();
-  e.stopPropagation();
-  setDragActive(true);
-};
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+  };
 
-const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-  e.preventDefault();
-  e.stopPropagation();
-  setDragActive(false);
-};
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  };
 
-const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-  e.preventDefault();
-  e.stopPropagation();
-  setDragActive(true);
-};
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      setFile(e.dataTransfer.files[0]);
+    }
+  };
 
-const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-  e.preventDefault();
-  e.stopPropagation();
-  setDragActive(false);
-  
-  if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-    setFile(e.dataTransfer.files[0]);
-  }
-};
   const predefinedInterests = [
     'Software Development',
     'Data Science',
@@ -347,7 +346,7 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-setIsLoading(true)
+    setIsLoading(true)
     // Validate required fields
     const requiredFields = ['name', 'dob', 'gender', 'nationality', 'state', 'email', 'password', 'profession', 'experience'];
     
@@ -538,244 +537,256 @@ setIsLoading(true)
                 />
               </div>
 
-              {/* <div>
-                <label className="block text-sm text-gray-600 mb-1">Profile Picture</label>
-                <div className="flex items-center justify-between w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200">
-                  <input type="file" onChange={handleFileChange} className="flex-1 text-gray-600 text-sm" />
-                </div>
-              </div> */}
-
               <div>
-  <label className="block text-sm text-gray-600 mb-1">Profile Picture</label>
-  <div 
-    className={`w-full border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-      dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
-    }`}
-    onClick={() => fileInputRef.current?.click()}
-    onDragEnter={handleDragEnter}
-    onDragLeave={handleDragLeave}
-    onDragOver={handleDragOver}
-    onDrop={handleDrop}
-  >
-    <input 
-      type="file" 
-      ref={fileInputRef}
-      onChange={handleFileChange} 
-      className="hidden" 
-    />
-    {file ? (
-      <div className="flex flex-col items-center">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="font-medium text-gray-700">{file.name}</span>
-          <button 
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setFile(null);
-            }}
-            className="text-red-500 hover:text-red-700"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <span className="text-sm text-gray-500">Click or drag to replace</span>
-      </div>
-    ) : (
-      <div className="flex flex-col items-center">
-        <svg className="w-8 h-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-        </svg>
-        <p className="text-sm text-gray-600">
-          <span className="font-medium text-blue-600">Click to upload</span> or drag and drop
-        </p>
-        <p className="text-xs text-gray-500 mt-1">PNG, JPG, GIF up to 5MB</p>
-      </div>
-    )}
-  </div>
-</div>
-
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-10">
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Interests</h3>
-          
-          <div className="relative" ref={interestRef}>
-            <div
-              className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 cursor-pointer flex justify-between items-center"
-              onClick={() => setShowInterestDropdown(!showInterestDropdown)}
-            >
-              <span className="text-gray-700">
-                {formData.interests.length > 0 ? `${formData.interests.length} interest(s) selected` : 'Select Interests'}
-              </span>
-              <ChevronDown className="h-4 w-4" />
-            </div>
-
-            {showInterestDropdown && (
-              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                <div className="p-2 border-b">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={customInterest}
-                      onChange={(e) => setCustomInterest(e.target.value)}
-                      placeholder="Add custom interest..."
-                      className="flex-1 px-3 py-1 text-sm border border-gray-300 rounded"
-                      onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomInterest())}
-                    />
-                    <button
-                      type="button"
-                      onClick={addCustomInterest}
-                      className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-                
-                {predefinedInterests.map((interest) => (
-                  <div key={interest} className="flex items-center px-3 py-2 hover:bg-gray-50">
-                    <input
-                      type="checkbox"
-                      id={interest}
-                      checked={formData.interests.includes(interest)}
-                      onChange={() => handleInterestToggle(interest)}
-                      className="mr-2"
-                    />
-                    <label htmlFor={interest} className="text-sm cursor-pointer flex-1">
-                      {interest}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Selected Interests Cards */}
-          {formData.interests.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {formData.interests.map((interest) => (
-                <div
-                  key={interest}
-                  className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                <label className="block text-sm text-gray-600 mb-1">Profile Picture</label>
+                <div 
+                  className={`w-full border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
+                    dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                  onClick={() => fileInputRef.current?.click()}
+                  onDragEnter={handleDragEnter}
+                  onDragLeave={handleDragLeave}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
                 >
-                  <span>{interest}</span>
-                  <button
-                    type="button"
-                    onClick={() => removeInterest(interest)}
-                    className="ml-2 hover:bg-blue-200 rounded-full p-1"
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
+                  <input 
+                    type="file" 
+                    ref={fileInputRef}
+                    onChange={handleFileChange} 
+                    className="hidden" 
+                  />
+                  {file ? (
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="font-medium text-gray-700">{file.name}</span>
+                        <button 
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setFile(null);
+                          }}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <span className="text-sm text-gray-500">Click or drag to replace</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center">
+                      <svg className="w-8 h-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                      </svg>
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium text-blue-600">Click to upload</span> or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1">PNG, JPG, GIF up to 5MB</p>
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="mb-10">
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Profession</h3>
-          <div className="relative" ref={professionRef}>
-            <div
-              className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 cursor-pointer flex justify-between items-center"
-              onClick={() => setShowProfessionDropdown(!showProfessionDropdown)}
-            >
-              <span className="text-gray-700">
-                {formData.profession || 'Select Profession'}
-              </span>
-              <ChevronDown className="h-4 w-4" />
-            </div>
-
-            {showProfessionDropdown && (
-              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                <div className="p-2 border-b">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={customProfession}
-                      onChange={(e) => setCustomProfession(e.target.value)}
-                      placeholder="Add custom profession..."
-                      className="flex-1 px-3 py-1 text-sm border border-gray-300 rounded"
-                      onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomProfession())}
-                    />
-                    <button
-                      type="button"
-                      onClick={addCustomProfession}
-                      className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-                
-                {predefinedProfessions.map((profession) => (
-                  <div
-                    key={profession}
-                    className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-sm"
-                    onClick={() => handleProfessionSelect(profession)}
-                  >
-                    {profession}
-                  </div>
-                ))}
               </div>
-            )}
+            </div>
           </div>
         </div>
 
         <div className="mb-10">
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Experience</h3>
-          <div className="relative">
-            <select
-              name="experience"
-              value={formData.experience}
-              onChange={handleChange}
-              className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 appearance-none"
-              required
-            >
-              <option value="">Select Experience</option>
-              <option value="0-1">0-1 year</option>
-              <option value="1-2">1-2 years</option>
-              <option value="2-3">2-3 years</option>
-              <option value="3-5">3-5 years</option>
-              <option value="5-7">5-7 years</option>
-              <option value="7-10">7-10 years</option>
-              <option value="10-15">10-15 years</option>
-              <option value="15-20">15-20 years</option>
-              <option value="20+">20+ years</option>
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-              <ChevronDown className="h-4 w-4" />
+          <div className="flex flex-col md:flex-row justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-semibold" style={{ color: "#2d3748" }}>
+                Interests
+              </h3>
+              <p className="text-sm text-gray-600">Select your interests</p>
+            </div>
+
+            <div className="space-y-4 w-full md:ml-9 lg:ml-9 xl:ml-9">
+              <div className="relative" ref={interestRef}>
+                <div
+                  className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 cursor-pointer flex justify-between items-center"
+                  onClick={() => setShowInterestDropdown(!showInterestDropdown)}
+                >
+                  <span className="">
+                    {formData.interests.length > 0 ? `${formData.interests.length} interest(s) selected` : 'Select Interests'}
+                  </span>
+                  <ChevronDown className="h-4 w-4" />
+                </div>
+
+                {showInterestDropdown && (
+                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                    <div className="p-2 border-b">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={customInterest}
+                          onChange={(e) => setCustomInterest(e.target.value)}
+                          placeholder="Add custom interest..."
+                          className="flex-1 px-3 py-1 text-sm border border-gray-300 rounded"
+                          onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomInterest())}
+                        />
+                        <button
+                          type="button"
+                          onClick={addCustomInterest}
+                          className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {predefinedInterests.map((interest) => (
+                      <div key={interest} className="flex items-center px-3 py-2 hover:bg-gray-50">
+                        <input
+                          type="checkbox"
+                          id={interest}
+                          checked={formData.interests.includes(interest)}
+                          onChange={() => handleInterestToggle(interest)}
+                          className="mr-2"
+                        />
+                        <label htmlFor={interest} className="text-sm cursor-pointer flex-1">
+                          {interest}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {formData.interests.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {formData.interests.map((interest) => (
+                    <div
+                      key={interest}
+                      className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >
+                      <span>{interest}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeInterest(interest)}
+                        className="ml-2 hover:bg-blue-200 rounded-full p-1"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <div className="flex flex-col md:flex-row justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-semibold" style={{ color: "#2d3748" }}>
+                Profession
+              </h3>
+              <p className="text-sm text-gray-600">Select your profession</p>
+            </div>
+
+            <div className="space-y-4 w-full md:ml-8 lg:ml-8 xl:ml-8 ">
+              <div className="relative" ref={professionRef}>
+                <div
+                  className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 cursor-pointer flex justify-between items-center"
+                  onClick={() => setShowProfessionDropdown(!showProfessionDropdown)}
+                >
+                  <span className="">
+                    {formData.profession || 'Select Profession'}
+                  </span>
+                  <ChevronDown className="h-4 w-4" />
+                </div>
+
+                {showProfessionDropdown && (
+                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                    <div className="p-2 border-b">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={customProfession}
+                          onChange={(e) => setCustomProfession(e.target.value)}
+                          placeholder="Add custom profession..."
+                          className="flex-1 px-3 py-1 text-sm border border-gray-300 rounded"
+                          onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomProfession())}
+                        />
+                        <button
+                          type="button"
+                          onClick={addCustomProfession}
+                          className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {predefinedProfessions.map((profession) => (
+                      <div
+                        key={profession}
+                        className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                        onClick={() => handleProfessionSelect(profession)}
+                      >
+                        {profession}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <div className="flex flex-col md:flex-row justify-between gap-6">
+            <div className="">
+              <h3 className="text-xl font-semibold" style={{ color: "#2d3748" }}>
+                Experience
+              </h3>
+              <p className="text-sm text-gray-600">Select your experience level</p>
+            </div>
+
+            <div className="space-y-4 w-full ">
+              <div className="relative">
+                <select
+                  name="experience"
+                  value={formData.experience}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 appearance-none "
+                  required
+                >
+                  <option  value="">Select Experience</option>
+                  <option value="0-1">0-1 year</option>
+                  <option value="1-2">1-2 years</option>
+                  <option value="2-3">2-3 years</option>
+                  <option value="3-5">3-5 years</option>
+                  <option value="5-7">5-7 years</option>
+                  <option value="7-10">7-10 years</option>
+                  <option value="10-15">10-15 years</option>
+                  <option value="15-20">15-20 years</option>
+                  <option value="20+">20+ years</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <ChevronDown className="h-4 w-4" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="flex justify-end">
-          {/* <button
-            type="submit"
-            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-          >
-            Proceed
-          </button> */}
-
-
           <button
-  type="submit"
-  className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-  disabled={isLoading}
->
-  {isLoading ? (
-    <>
-      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
-      Processing...
-    </>
-  ) : (
-    "Proceed"
-  )}
-</button>
+            type="submit"
+            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </>
+            ) : (
+              "Proceed"
+            )}
+          </button>
         </div>
       </form>
     </div>
