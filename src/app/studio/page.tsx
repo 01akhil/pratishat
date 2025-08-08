@@ -187,7 +187,7 @@ function DashboardContent() {
                 onClick={() => setAnalyticsOpen(!analyticsOpen)}
                 className="flex items-center text-sm bg-indigo-50 text-indigo-600 px-3 py-1 rounded-md mb-4 md:mb-0"
               >
-                Analytics {analyticsOpen ? '↑' : '↓'}
+               View Analytics {analyticsOpen ? '↑' : '↓'}
               </button>
             </div>
 
