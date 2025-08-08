@@ -573,7 +573,7 @@ const OrganizationSignUp: React.FC<OrganizationSignUpProps> = ({ onToggle }) => 
               <p className="text-sm text-gray-600">Select your sector</p>
             </div>
 
-            <div className="space-y-4 w-auto  md:ml-[9.5vh] lg:ml-[9.5vh] xl:[ml-9.5vh]">
+            <div className="space-y-4 w-full md:ml-[9.5vh] lg:ml-[9.5vh] xl:[ml-9.5vh]">
               <div className="relative" ref={sectorRef}>
                 <div
                   className="w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-200 cursor-pointer flex justify-between items-center"
